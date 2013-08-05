@@ -19,9 +19,25 @@
       var $tweetList
       var $userTweets
 
+//this will be used to display tweets to a target html
+      var diaplayTweet = function(tweet, target) { 
+        var tweetBody = [
+          '<div class="tweet">',
+          '<h3 class="user"><strong>' + tweet.user + '</strong></h3>',
+          '<span class="message">' + tweet.message + '</span>',
+          '<p class="time">' + tweet.created_at + '</p>',
+          '<div>'].join('');
+        var $tweet = $(tweetBody);
+        $tweet.data({user: tweet.user});
+        target.append($tweet);
+      };
+
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+        $tweet = $('#tweets');
+        $tweetList = $('#tweetList');
+        $userTweets = $('#userTweets');
+        $userTweets.hide();
+        
 
         var index = streams.home.length - 1;
         while(index >= 0){
