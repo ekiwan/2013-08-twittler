@@ -15,8 +15,68 @@
     </div>
     <div id='userTweets'></div>
     <script>
+      var $tweets;
+      var $tweetList; 
+      var $userTweets;
 
+//this displays tweets to the target html
+      var displayTweet = function(tweet, target) {
+          var tweetBody = [
+              '<div class="tweet">',
+              '<h3 class="user"><strong>' + tweet.user + '</strong></h3>',
+              '<p class="timestamp">' + tweet.created_at + '</p>',
+              '<span class="message">' + tweet.message + '</span>',
+              '</div>'].join('');
+          var $tweet = $(tweetBody);
+          $tweet.data({user: tweet.user});
+          target.append($tweet);
+      };
 
+//this gets X number of tweets from the data generator and passes them to displayTweet
+      var displayNew = function(numberOfTweets) {
+          var tweet;
+          for (var i = 0; i < numberOfTweets; i++) {
+              tweet = streams.home.pop();
+              if (tweet) {
+                displayTweet(tweet, $tweets);
+              }
+          }
+      };
+
+//this gets tweets by user and passes them to displayTweet
+      var displayUser = function(user) {
+          $.each(streams.users[user], function(index, tweet) {
+              displayTweet(tweet, $userTweets);
+          });
+      };
+
+      $(document).ready(function(){
+        $tweets = $('#tweets');
+        $tweetList = $('#tweetList');
+        $userTweets = $('#userTweets');
+        $userTweets.hide(); 
+        displayNew(10);
+        $('#refresh').on('click', function() { //button handler
+            $tweets.empty(); //dumps the old list first so the page doesn't get huge
+            displayNew(10);
+        });
+        
+        $(document).on('click', '.user', function() { //this handles clicking the username
+            if ($tweetList.is(':visible')) {
+              $tweetList.hide();
+              $userTweets.empty();
+              var user = $(this).closest('.tweet').data('user');
+              displayUser(user);
+              $('h1').text('Twits from ' + user);
+              $userTweets.show();
+            } else { //clicking on a username again will go back to a fresh page
+                $userTweets.hide();
+                $('h1').text('Twits');
+                displayNew(10);
+                $tweetList.show();
+              }
+        });
+      });
 
     </script>
   </body>
