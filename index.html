@@ -4,6 +4,7 @@
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
     <script src="timeago.js"></script>
+    <link rel="stylesheet" type="text/css" href= "style.css" />
   </head>
   <body>
     <h1 class='tweet'>Twits</h1>
@@ -57,6 +58,11 @@
         $userTweets.hide(); 
         displayNew(10);
         $('#refresh').on('click', function() { //button handler
+            if (streams.home.length === 0) {
+              $('h1').text('Slow down!');
+            } else {
+                $('h1').text('Twits');
+              }
             $tweets.empty(); //dumps the old list first so the page doesn't get huge
             displayNew(10);
         });
