@@ -1,0 +1,63 @@
+        h1 {
+            text-align: center;
+        }
+
+        body {
+            background-color: gray;
+        }
+
+       .tweet {
+           background-color: whitesmoke;
+           border-style: solid;
+           border-color: black;
+           border-width: 1px;
+           border-spacing: 0.5px;
+           margin-bottom: 3px;
+           margin-right: auto;
+           margin-left: auto;
+           width: 60%;
+       }
+       .tweet:hover {
+           background-color: orange;
+       }
+
+        .user {
+            font-size: 28px;
+            margin-bottom: 3px;
+            margin-top: 4px;
+            margin-left: 4px;
+        }
+        .user:hover {
+            font-size: 34px;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-style: solid;
+        }
+
+        .message {
+            font-size: 27px;
+            margin-bottom: 2px;
+            margin-left: 4px;
+        }
+
+        .timestamp {
+            font-size: 16px;
+            margin-bottom: 1.5px;
+            margin-left: 8px;
+        }
+
+        #button {
+            margin-top: 33px;
+            margin-bottom: 33px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+        }
+        #refresh {
+            font-size: 33px;
+        }
+        #refresh:hover {
+            cursor: pointer;
+            background-color: orange;
+        }
