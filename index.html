@@ -32,21 +32,31 @@
         target.append($tweet);
       };
 
+      var displayNew = function(numberOfTweets) {
+        var tweet;
+        for (var i = 0; i < numberOfTweets; i++) {
+          tweet = streams.home.pop();
+          if (tweet) {
+            displayTweet(tweet, $tweets);
+          }
+        }
+      };
+
       $(document).ready(function(){
         $tweet = $('#tweets');
         $tweetList = $('#tweetList');
         $userTweets = $('#userTweets');
         $userTweets.hide();
-        
+        displayNew(10);
 
         var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+        // while(index >= 0){
+        //   var tweet = streams.home[index];
+        //   var $tweet = $('<div></div>');
+        //   $tweet.text('@' + tweet.user + ': ' + tweet.message);
+        //   $tweet.appendTo($body);
+        //   index -= 1;
+        // }
 
       });
 
