@@ -59,10 +59,8 @@
         displayNew(10);
         $('#refresh').on('click', function() { //button handler
             if (streams.home.length === 0) {
-              $('h1').text('Slow down!');
-            } else {
-                $('h1').text('Twits');
-              }
+              alert('Slow down!');
+            } 
             $tweets.empty(); //dumps the old list first so the page doesn't get huge
             displayNew(10);
         });
